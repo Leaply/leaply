@@ -7,8 +7,8 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-    name: Build and test
+  test:
+    name: Run tests
     runs-on: ubuntu-latest
 
     services:
