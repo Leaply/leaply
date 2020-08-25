@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :leaply, Leaply.Repo,
-  username: "exastencil",
-  password: "postgres",
+  username: System.get_env("POSTGRES_USER") || "postgres",
+  password: System.get_env("POSTGRES_PASSWORD") || "postgres",
   database: "leaply_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
