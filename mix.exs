@@ -5,6 +5,9 @@ defmodule Leaply.MixProject do
     [
       app: :leaply,
       version: "0.1.0",
+      name: "Leaply",
+      licenses: ["AGPL-3.0-or-later"],
+      source_url: "https://github.com/Leaply/leaply",
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
