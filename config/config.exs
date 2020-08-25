@@ -11,7 +11,7 @@ config :leaply,
   ecto_repos: [Leaply.Repo]
 
 # Configure generators to use Binary IDs
-config :your_app, :generators, binary_id: true
+config :leaply, :generators, binary_id: true
 
 # Configures the endpoint
 config :leaply, LeaplyWeb.Endpoint,
