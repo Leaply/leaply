@@ -39,7 +39,7 @@ environment :prod do
   set include_src: false
   set cookie: :"DnmiS[B8o/oH*Vd4eS<cwjc74iWPtOF~UIJWpXF[;%eYygAUOLz<6tW6=Ye.F1kN"
   set vm_args: "rel/vm.args"
-  set pre_start_hooks: "rel/hooks/migrate"
+  set pre_start_hooks: "rel/hooks/pre_start"
 end
 
 # You may define one or more releases in this file.
