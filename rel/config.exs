@@ -39,6 +39,7 @@ environment :prod do
   set include_src: false
   set cookie: :"DnmiS[B8o/oH*Vd4eS<cwjc74iWPtOF~UIJWpXF[;%eYygAUOLz<6tW6=Ye.F1kN"
   set vm_args: "rel/vm.args"
+  set pre_start_hooks: "rel/hooks/migrate"
 end
 
 # You may define one or more releases in this file.
@@ -50,7 +51,7 @@ release :leaply do
   set version: current_version(:leaply)
   set applications: [
     :runtime_tools
-  ],
+  ]
   set commands: [
     migrate: "rel/commands/migrate.sh",
     seed: "rel/commands/seed.sh",
