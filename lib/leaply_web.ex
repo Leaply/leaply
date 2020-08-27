@@ -44,8 +44,15 @@ defmodule LeaplyWeb do
 
   def live_view do
     quote do
-      use Phoenix.LiveView,
-        layout: {LeaplyWeb.LayoutView, "live.html"}
+      use Phoenix.LiveView, layout: {LeaplyWeb.LayoutView, "live.html"}
+
+      unquote(view_helpers())
+    end
+  end
+
+  def marketing_live_view do
+    quote do
+      use Phoenix.LiveView, layout: {LeaplyWeb.LayoutView, "marketing.html"}
 
       unquote(view_helpers())
     end

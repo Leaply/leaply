@@ -17,7 +17,7 @@ defmodule LeaplyWeb.Router do
   scope "/", LeaplyWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    live "/", Marketing.HomeLive, :index
   end
 
   # Other scopes may use custom stacks.

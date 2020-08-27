@@ -12,6 +12,11 @@ import "../css/app.scss"
 //     import {Socket} from "phoenix"
 //     import socket from "./socket"
 //
+
+// Sets .mode-dark on body based on system settings
+import "tailwindcss-dark-mode/prefers-dark.js"
+
+/* Phoenix-related imports*/ 
 import "phoenix_html"
 import {Socket} from "phoenix"
 import NProgress from "nprogress"
