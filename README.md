@@ -1,5 +1,7 @@
 # Leaply
 
+![Elixir CI / CD](https://github.com/Leaply/leaply/workflows/Elixir%20CI%20/%20CD/badge.svg)
+
 This is an open-source rewrite of the [Leaply](https://leap.ly) opportunities
 platform. It is a work-in-progress and not currently in use at the link above.
 Once feature parity is reached we will transition to it.

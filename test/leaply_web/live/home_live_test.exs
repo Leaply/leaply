@@ -5,7 +5,7 @@ defmodule LeaplyWeb.HomeLiveTest do
 
   test "disconnected and connected render", %{conn: conn} do
     {:ok, page_live, disconnected_html} = live(conn, "/")
-    assert disconnected_html =~ "Before they sold out"
-    assert render(page_live) =~ "Before they sold out"
+    assert disconnected_html =~ "Leaply can help you find it"
+    assert render(page_live) =~ "Leaply can help you find it"
   end
 end
