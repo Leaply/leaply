@@ -1,0 +1,38 @@
+<div class="flex flex-col">
+  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <h1>Listing <%= schema.human_plural %></h1>
+
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead>
+            <tr>
+<%= for {k, _} <- schema.attrs do %>              <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                <%= Phoenix.Naming.humanize(Atom.to_string(k)) %>
+              </th>
+<% end %>
+              <th class="px-6 py-3 bg-gray-50"></th>
+            </tr>
+          </thead>
+          <tbody>
+<%%= for <%= schema.singular %> <- @<%= schema.plural %> do %>
+            <tr>
+<%= for {k, _} <- schema.attrs do %>              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
+                <%%= <%= schema.singular %>.<%= k %> %>
+              </td>
+<% end %>
+              <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                <%%= link "Show", to: Routes.<%= schema.route_helper %>_path(@conn, :show, <%= schema.singular %>), class: "text-orange-500 hover:text-orange-900" %>
+                <%%= link "Edit", to: Routes.<%= schema.route_helper %>_path(@conn, :edit, <%= schema.singular %>), class: "text-orange-500 hover:text-orange-900" %>
+                <%%= link "Delete", to: Routes.<%= schema.route_helper %>_path(@conn, :delete, <%= schema.singular %>), method: :delete, data: [confirm: "Are you sure?"], class: "text-orange-500 hover:text-orange-900" %>
+              </td>
+            </tr>
+<%% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <span><%%= link "New <%= schema.human_singular %>", to: Routes.<%= schema.route_helper %>_path(@conn, :new) %></span>
+  </div>
+</div>
