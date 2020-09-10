@@ -10,8 +10,7 @@
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@200..900&family=Inter:wght@200..900" />
   </head>
-  <body>
-    <%= render "_user_menu.html", assigns %>
+  <body class="dark:bg-gray-900">
     <%= @inner_content %>
   </body>
 </html>

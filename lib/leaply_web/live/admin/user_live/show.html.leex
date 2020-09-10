@@ -1,0 +1,115 @@
+<header class="bg-white dark:bg-gray-800 shadow">
+  <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+    <div>
+      <div>
+        <nav class="sm:hidden">
+          <%= live_redirect to: Routes.admin_user_index_path(@socket, :index), class: "flex items-center text-sm leading-5 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark-hover:text-gray-200 transition duration-150 ease-in-out" do %>
+            <svg class="flex-shrink-0 -ml-1 mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+            Back
+          <% end %>
+        </nav>
+        <nav class="hidden sm:flex items-center text-sm leading-5 font-medium">
+          <a href="#" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark-hover:text-white transition duration-150 ease-in-out">Admin</a>
+          <svg class="flex-shrink-0 mx-2 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+          </svg>
+          <%= live_redirect "Users", to: Routes.admin_user_index_path(@socket, :index), class: "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark-hover:text-white transition duration-150 ease-in-out" %>
+          <svg class="flex-shrink-0 mx-2 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+          </svg>
+          <span class="text-gray-500 hover:text-gray-700 dark:text-gray-400"><%= @user.email %></span>
+        </nav>
+      </div>
+      <div class="mt-2 md:flex md:items-center md:justify-between">
+        <div class="flex-1 min-w-0">
+          <h2 class="text-2xl title-font leading-7 text-gray-900 dark:text-white sm:text-3xl sm:leading-9 sm:truncate">
+            <%= @user.email %>
+          </h2>
+        </div>
+        <div class="mt-4 flex-shrink-0 flex md:mt-0 md:ml-4">
+          <span class="shadow-sm rounded-md">
+            <%= live_patch "Edit", to: Routes.admin_user_show_path(@socket, :edit, @user), class: "inline-flex items-center px-4 py-2
+              border border-gray-300 dark:border-transparent
+              text-sm leading-5 font-medium rounded-md
+              text-gray-700 dark:text-white
+              bg-white dark:bg-gray-600
+              hover:text-gray-500 dark-hover:bg-gray-500
+              focus:outline-none focus:shadow-outline-blue focus:border-blue-300
+              active:text-gray-800 active:bg-gray-50
+              transition duration-150 ease-in-out" %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<%= if @live_action in [:edit] do %>
+  <%= live_modal @socket, LeaplyWeb.Admin.UserLive.FormComponent,
+    id: @user.id,
+    title: @page_title,
+    action: @live_action,
+    user: @user,
+    return_to: Routes.admin_user_show_path(@socket, :show, @user) %>
+<% end %>
+
+<main>
+  <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+      <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
+        <h3 class="title-font text-lg leading-6 font-medium text-gray-900">
+          User Information
+        </h3>
+        <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
+          Login details for the user
+        </p>
+      </div>
+      <div>
+        <dl>
+          <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm leading-5 font-medium text-gray-500">
+              ID
+            </dt>
+            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+              <%= @user.id %>
+            </dd>
+          </div>
+          <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm leading-5 font-medium text-gray-500">
+              Email address
+            </dt>
+            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+              <%= @user.email %>
+            </dd>
+          </div>
+          <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm leading-5 font-medium text-gray-500">
+              Registered
+            </dt>
+            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+              <%= @user.inserted_at %>
+            </dd>
+          </div>
+          <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm leading-5 font-medium text-gray-500">
+              Confirmed
+            </dt>
+            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+              <%= @user.confirmed_at || "Unconfirmed" %>
+            </dd>
+          </div>
+          <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm leading-5 font-medium text-gray-500">
+              Last updated
+            </dt>
+            <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+              <%= @user.updated_at %>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</main>

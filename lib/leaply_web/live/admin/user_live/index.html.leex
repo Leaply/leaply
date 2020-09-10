@@ -1,0 +1,70 @@
+<header class="bg-white dark:bg-gray-800 shadow">
+  <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+    <div class="md:flex md:items-center md:justify-between">
+      <div class="flex-1 min-w-0">
+        <h1 class="title-font text-2xl font-bold leading-7 text-gray-900 dark:text-gray-200 sm:text-3xl sm:leading-9 sm:truncate">
+          Users
+        </h1>
+      </div>
+      <div class="mt-4 flex md:mt-0 md:ml-4">
+        <span class="ml-3 shadow-sm rounded-md">
+          <%= live_patch "Register User", to: Routes.admin_user_index_path(@socket, :new), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-orange-500 hover:bg-orange-400 focus:outline-none focus:shadow-outline-orange focus:border-orange-700 active:bg-orange-700 transition duration-150 ease-in-out" %>
+        </span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<%= if @live_action in [:new, :edit] do %>
+  <%= live_modal @socket, LeaplyWeb.Admin.UserLive.FormComponent,
+    id: @user.id || :new,
+    title: @page_title,
+    action: @live_action,
+    user: @user,
+    return_to: Routes.admin_user_index_path(@socket, :index) %>
+<% end %>
+
+<main>
+  <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div class="flex flex-col">
+      <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+          <div class="shadow overflow-hidden border-b border-gray-200 dark:border-gray-800 sm:rounded-lg">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead>
+                <tr>
+                  <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Email
+                  </th>
+                  <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Confirmed
+                  </th>
+
+                  <th class="px-6 py-3 bg-gray-50"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <%= for {user, index} <- Enum.with_index(@users) do %>
+                  <tr class="<%= if rem(index, 2) == 0, do: "bg-white", else: "bg-gray-50" %>" id="user-<%= user.id %>">
+                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
+                      <%= user.email %>
+                    </td>
+                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
+                      <%= user.confirmed_at %>
+                    </td>
+
+                    <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                      <%= live_redirect "Show", to: Routes.admin_user_show_path(@socket, :show, user), class: "text-orange-500 hover:text-orange-900" %>
+                      <%= live_patch "Edit", to: Routes.admin_user_index_path(@socket, :edit, user), class: "ml-3 text-orange-500 hover:text-orange-900" %>
+                      <%= link "Delete", to: "#", phx_click: "delete", phx_value_id: user.id, class: "ml-3 text-red-500 hover:text-red-900" %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

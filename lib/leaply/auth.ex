@@ -59,6 +59,17 @@ defmodule Leaply.Auth do
   """
   def get_user!(id), do: Repo.get!(User, id)
 
+  @doc """
+  Gets all users.
+
+  ## Examples
+
+      iex> list_users()
+      [%User{}]
+
+  """
+  def list_users(), do: Repo.all(User)
+
   ## User registration
 
   @doc """
@@ -345,5 +356,44 @@ defmodule Leaply.Auth do
       {:ok, %{user: user}} -> {:ok, user}
       {:error, :user, changeset, _} -> {:error, changeset}
     end
+  end
+
+  ## Administration
+
+  @doc """
+  Updates a user.
+  ## Examples
+      iex> update_user(user, %{field: new_value})
+      {:ok, %User{}}
+      iex> update_user(user, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+  """
+  def update_user(%User{} = user, attrs) do
+    user
+    |> User.administration_changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking user changes.
+  ## Examples
+      iex> change_useruser)
+      %Ecto.Changeset{data: %User{}}
+  """
+  def change_user(%User{} = user, attrs \\ %{}) do
+    User.administration_changeset(user, attrs)
+  end
+
+  @doc """
+  Deletes a User.
+
+  ## Examples
+
+      iex> delete_user(user)
+      {:ok, %User{}}
+
+  """
+  def delete_user(user) do
+    Repo.delete(user)
   end
 end

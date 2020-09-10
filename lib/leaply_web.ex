@@ -58,6 +58,14 @@ defmodule LeaplyWeb do
     end
   end
 
+  def admin_live_view do
+    quote do
+      use Phoenix.LiveView, layout: {LeaplyWeb.LayoutView, "admin.html"}
+
+      unquote(view_helpers())
+    end
+  end
+
   def live_component do
     quote do
       use Phoenix.LiveComponent
@@ -90,6 +98,7 @@ defmodule LeaplyWeb do
 
       # Import LiveView helpers (live_render, live_component, live_patch, etc)
       import Phoenix.LiveView.Helpers
+      import LeaplyWeb.LiveHelpers
 
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View

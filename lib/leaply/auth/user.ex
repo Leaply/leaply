@@ -15,6 +15,19 @@ defmodule Leaply.Auth.User do
   end
 
   @doc """
+  A user changeset for administrations.
+
+  Fields that administrators are able to change can be processed here.
+
+  TODO: Remove this and replace with individual actions
+  """
+  def administration_changeset(user, attrs) do
+    user
+    |> cast(attrs, [:email])
+    |> validate_email()
+  end
+
+  @doc """
   A user changeset for registration.
 
   It is important to validate the length of both email and password.
