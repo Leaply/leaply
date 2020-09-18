@@ -16,6 +16,9 @@ import "../css/app.scss";
 // Sets .mode-dark on body based on system settings
 import "tailwindcss-dark-mode/prefers-dark.js";
 
+// AlpineJS for client-side interaction
+import "alpinejs";
+
 /* Phoenix-related imports*/
 import "phoenix_html";
 import { Socket } from "phoenix";
@@ -26,6 +29,13 @@ let csrfToken = document
   .querySelector("meta[name='csrf-token']")
   .getAttribute("content");
 let liveSocket = new LiveSocket("/live", Socket, {
+  dom: {
+    onBeforeElUpdated(from, to) {
+      if (from.__x) {
+        window.Alpine.clone(from.__x, to);
+      }
+    },
+  },
   params: { _csrf_token: csrfToken },
 });
 

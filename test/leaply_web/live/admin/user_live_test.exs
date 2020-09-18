@@ -4,8 +4,6 @@ defmodule LeaplyWeb.Admin.UserLiveTest do
   import Phoenix.LiveViewTest
   import Leaply.AuthFixtures
 
-  alias Leaply.Auth
-
   @register_attrs %{email: "test@leap.ly", password: "password"}
   @update_attrs %{email: "updated@leap.ly"}
   @invalid_attrs %{email: nil}
