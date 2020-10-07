@@ -21,7 +21,7 @@ defmodule LeaplyWeb.Router do
   scope "/", LeaplyWeb do
     pipe_through :browser
 
-    live "/", Marketing.HomeLive, :index
+    get "/", LandingPageController, :home
   end
 
   scope "/admin", LeaplyWeb.Admin, as: :admin do
