@@ -1,26 +1,84 @@
-<h1>Register</h1>
-
-<%= form_for @changeset, Routes.user_registration_path(@conn, :create), fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+<div class="py-10">
+  <header>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+      <h1 class="text-3xl font-bold leading-tight text-gray-900 dark:text-gray-100 title-font">Register</h1>
     </div>
-  <% end %>
+  </header>
+  <main>
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div>
+        <div class="md:grid md:grid-cols-3 md:gap-6">
+          <div class="md:col-span-1">
+            <div class="px-4 sm:px-0">
+              <h3 class="text-lg font-medium title-font leading-6 text-gray-900 dark:text-gray-100">
+                Already have an account?
+              </h3>
+              <p class="mt-1 text-sm leading-5 text-gray-600 dark:text-gray-400">
+                <%= link "Sign in to Leaply", to: Routes.user_session_path(@conn, :new) %>
+              </p>
+              <h3 class="text-lg font-medium title-font leading-6 text-gray-900 dark:text-gray-100 mt-4">
+                Forgot your password?
+              </h3>
+              <p class="mt-1 text-sm leading-5 text-gray-600 dark:text-gray-400">
+                <%= link "Request a password reset", to: Routes.user_reset_password_path(@conn, :new) %>
+              </p>
+            </div>
+          </div>
+          <div class="mt-5 md:mt-0 md:col-span-2">
+            <%= form_for @changeset, Routes.user_registration_path(@conn, :create), fn f -> %>
+              <div class="shadow overflow-hidden sm:rounded-md">
+                <%= if @changeset.action do %>
+                  <div class="bg-red-50 p-4">
+                    <div class="flex">
+                      <div class="flex-shrink-0">
+                        <!-- Heroicon name: x-circle -->
+                        <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                        </svg>
+                      </div>
+                      <div class="ml-3">
+                        <h3 class="text-sm leading-5 font-medium text-red-800">
+                          Oops, something went wrong! Please check the errors below.
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
 
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
-  <%= error_tag f, :email %>
+                <div class="px-4 py-5 bg-white sm:p-6">
+                  <div class="grid grid-cols-6 gap-6">
+                    <div class="col-span-6 sm:col-span-4">
+                      <%= label f, :email, class: "block text-sm font-medium leading-5 text-gray-700" %>
+                      <%= email_input f, :email, required: true, class: "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+                      <%= error_tag f, :email %>
+                    </div>
 
-  <%= label f, :password %>
-  <%= password_input f, :password, required: true %>
-  <%= error_tag f, :password %>
+                    <div class="col-span-6 sm:col-span-4">
+                      <%= label f, :password, class: "block text-sm font-medium leading-5 text-gray-700" %>
+                      <%= password_input f, :password, required: true, class: "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+                      <%= error_tag f, :password %>
+                    </div>
+                  </div>
+                </div>
 
-  <div>
-    <%= submit "Register" %>
-  </div>
-<% end %>
-
-<p>
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
-</p>
+                <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                  <%= submit "Register", class: "
+                    py-2 px-4
+                    border border-transparent
+                    text-sm leading-5 font-medium
+                    rounded-md
+                    text-white
+                    bg-orange-500 hover:bg-orange-600
+                    shadow-sm
+                    focus:outline-none focus:shadow-outline-blue active:bg-orange-600
+                    transition duration-150 ease-in-out
+                    " %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
