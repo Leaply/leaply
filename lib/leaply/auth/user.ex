@@ -6,6 +6,7 @@ defmodule Leaply.Auth.User do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "users" do
+    field :display_name, :string
     field :email, :string
     field :password, :string, virtual: true
     field :hashed_password, :string
@@ -37,7 +38,7 @@ defmodule Leaply.Auth.User do
   """
   def registration_changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:email, :password, :display_name])
     |> validate_email()
     |> validate_password()
   end
@@ -81,6 +82,20 @@ defmodule Leaply.Auth.User do
     |> case do
       %{changes: %{email: _}} = changeset -> changeset
       %{} = changeset -> add_error(changeset, :email, "did not change")
+    end
+  end
+
+  @doc """
+  A user changeset for changing the display name.
+
+  It requires the name to change otherwise an error is added.
+  """
+  def display_name_changeset(user, attrs) do
+    user
+    |> cast(attrs, [:display_name])
+    |> case do
+      %{changes: %{display_name: _}} = changeset -> changeset
+      %{} = changeset -> add_error(changeset, :display_name, "did not change")
     end
   end
 

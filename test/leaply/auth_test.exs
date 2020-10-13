@@ -100,6 +100,30 @@ defmodule Leaply.AuthTest do
     end
   end
 
+  describe "change_user_display_name/2" do
+    test "returns a changeset" do
+      assert %Ecto.Changeset{} = Auth.change_user_display_name(%User{})
+    end
+  end
+
+  describe "update_user_display_name/2" do
+    setup do
+      %{user: user_fixture()}
+    end
+
+    test "requires display name to change", %{user: user} do
+      {:error, changeset} = Auth.update_user_display_name(user, %{})
+      assert %{display_name: ["did not change"]} = errors_on(changeset)
+    end
+
+    test "updates the user with new display name", %{user: user} do
+      {status, changed_user} = Auth.update_user_display_name(user, %{display_name: "John Doe"})
+      assert status == :ok
+      assert changed_user.display_name != user.display_name
+      assert changed_user.display_name == "John Doe"
+    end
+  end
+
   describe "change_user_email/2" do
     test "returns a user changeset" do
       assert %Ecto.Changeset{} = changeset = Auth.change_user_email(%User{})

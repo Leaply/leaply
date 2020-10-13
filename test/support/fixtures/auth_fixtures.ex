@@ -4,6 +4,7 @@ defmodule Leaply.AuthFixtures do
   entities via the `Leaply.Auth` context.
   """
 
+  def display_name, do: "Test User"
   def unique_user_email, do: "user#{System.unique_integer()}@example.com"
   def valid_user_password, do: "hello world!"
 
@@ -11,6 +12,7 @@ defmodule Leaply.AuthFixtures do
     {:ok, user} =
       attrs
       |> Enum.into(%{
+        display_name: display_name(),
         email: unique_user_email(),
         password: valid_user_password()
       })

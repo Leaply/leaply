@@ -106,6 +106,37 @@ defmodule Leaply.Auth do
   ## Settings
 
   @doc """
+  Returns an `%Ecto.Changeset{}` for changing the user display name.
+
+  ## Examples
+
+      iex> change_user_display_name(user)
+      %Ecto.Changeset{data: %User{}}
+
+  """
+  def change_user_display_name(user, attrs \\ %{}) do
+    User.display_name_changeset(user, attrs)
+  end
+
+  @doc """
+  Changes the display name field on the user
+
+  ## Examples
+
+      iex> update_user_display_name(user, %{display_name: ...})
+      {:ok, %User{}}
+
+      iex> update_user_display_name(user, %{display_name: ...})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_user_display_name(user, attrs \\ %{}) do
+    user
+    |> User.display_name_changeset(attrs)
+    |> Repo.update
+  end
+
+  @doc """
   Returns an `%Ecto.Changeset{}` for changing the user email.
 
   ## Examples

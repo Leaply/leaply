@@ -8,7 +8,7 @@
       <h3 class="title-font text-lg leading-6 font-medium text-gray-900">
         <%= case @action do
           :new -> "Registering a New User"
-          :edit -> "Editing " <> @user.email
+          :edit -> "Editing #{@user.email}"
           end %>
       </h3>
       <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
@@ -18,6 +18,12 @@
 
     <div class="px-4 py-5 bg-white sm:p-6">
       <div class="grid grid-cols-6 gap-6">
+        <div class="col-span-6 sm:col-span-4">
+          <%= label f, :display_name, class: "block text-sm font-medium leading-5 text-gray-700" %>
+          <%= text_input f, :display_name, class: "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-orange focus:border-orange-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5", placeholder: "you@domain.com" %>
+          <%= error_tag f, :display_name %>
+        </div>
+
         <div class="col-span-6 sm:col-span-4">
           <%= label f, :email, class: "block text-sm font-medium leading-5 text-gray-700" %>
           <%= email_input f, :email, class: "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-orange focus:border-orange-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5", placeholder: "you@domain.com" %>
@@ -39,7 +45,7 @@
     <% end %>
 
     <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-      <%= live_patch "Cancel", to: @return_to, class: "mr-4 py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-orange-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out" %>
+      <%= live_patch "Cancel", to: @return_to, class: "mr-4 py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-orange-300 focus:shadow-outline-orange active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out" %>
       <%= submit "Save", phx_disable_with: "Saving...", class: "py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-orange-600 shadow-sm hover:bg-orange-500 focus:outline-none focus:shadow-outline-orange active:bg-orange-600 transition duration-150 ease-in-out" %>
     </div>
   </div>

@@ -34,6 +34,9 @@
               <thead>
                 <tr>
                   <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Name
+                  </th>
+                  <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Email
                   </th>
                   <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
@@ -47,6 +50,10 @@
                 <%= for {user, index} <- Enum.with_index(@users) do %>
                   <tr class="<%= if rem(index, 2) == 0, do: "bg-white", else: "bg-gray-50" %>" id="user-<%= user.id %>">
                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
+                      <%= user.display_name %>
+                    </td>
+
+                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
                       <%= user.email %>
                     </td>
                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">

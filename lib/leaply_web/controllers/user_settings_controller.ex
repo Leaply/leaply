@@ -10,6 +10,20 @@ defmodule LeaplyWeb.UserSettingsController do
     render(conn, "edit.html", page_title: "User Settings")
   end
 
+  def update_display_name(conn, %{"user" => user_params}) do
+    user = conn.assigns.current_user
+
+    case Auth.update_user_display_name(user, user_params) do
+      {:ok, _user} ->
+        conn
+        |> put_flash(:info, "Name updated successfully.")
+        |> redirect(to: Routes.user_settings_path(conn, :edit))
+
+      {:error, changeset} ->
+        render(conn, "edit.html", display_name_changeset: changeset)
+    end
+  end
+
   def update_email(conn, %{"current_password" => password, "user" => user_params}) do
     user = conn.assigns.current_user
 
@@ -66,6 +80,7 @@ defmodule LeaplyWeb.UserSettingsController do
     user = conn.assigns.current_user
 
     conn
+    |> assign(:display_name_changeset, Auth.change_user_display_name(user))
     |> assign(:email_changeset, Auth.change_user_email(user))
     |> assign(:password_changeset, Auth.change_user_password(user))
   end

@@ -20,6 +20,34 @@ defmodule LeaplyWeb.UserSettingsControllerTest do
     end
   end
 
+  describe "PUT /users/settings/update_display_name" do
+    test "updates the user display name", %{conn: conn, user: user} do
+      new_display_name_conn =
+        put(conn, Routes.user_settings_path(conn, :update_display_name), %{
+          "user" => %{
+            "display_name" => "John Doe"
+          }
+        })
+
+      assert redirected_to(new_display_name_conn) == Routes.user_settings_path(conn, :edit)
+      assert get_flash(new_display_name_conn, :info) =~ "Name updated successfully"
+      assert Auth.get_user_by_email(user.email).display_name == "John Doe"
+    end
+
+    test "requires a change to the display name", %{conn: conn} do
+      old_display_name_conn =
+        put(conn, Routes.user_settings_path(conn, :update_display_name), %{
+          "user" => %{
+            "display_name" => "Test User"
+          }
+        })
+
+      response = html_response(old_display_name_conn, 200)
+      assert response =~ "Account Settings"
+      assert response =~ "did not change"
+    end
+  end
+
   describe "PUT /users/settings/update_password" do
     test "updates the user password and resets tokens", %{conn: conn, user: user} do
       new_password_conn =
