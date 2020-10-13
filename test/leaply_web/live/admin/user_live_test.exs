@@ -4,8 +4,8 @@ defmodule LeaplyWeb.Admin.UserLiveTest do
   import Phoenix.LiveViewTest
   import Leaply.AuthFixtures
 
-  @register_attrs %{email: "test@leap.ly", password: "password"}
-  @update_attrs %{email: "updated@leap.ly"}
+  @register_attrs %{display_name: "John Doe", email: "test@leap.ly", password: "password"}
+  @update_attrs %{display_name: "Updated User", email: "updated@leap.ly"}
   @invalid_attrs %{email: nil}
 
   defp create_user(_) do
@@ -63,6 +63,7 @@ defmodule LeaplyWeb.Admin.UserLiveTest do
         |> follow_redirect(conn, Routes.admin_user_index_path(conn, :index))
 
       assert html =~ "User updated successfully"
+      assert html =~ "Updated User"
       assert html =~ "updated@leap.ly"
     end
 
@@ -105,6 +106,7 @@ defmodule LeaplyWeb.Admin.UserLiveTest do
         |> follow_redirect(conn, Routes.admin_user_show_path(conn, :show, user))
 
       assert html =~ "User updated successfully"
+      assert html =~ "Updated User"
       assert html =~ "updated@leap.ly"
     end
   end

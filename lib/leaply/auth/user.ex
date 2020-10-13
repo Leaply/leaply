@@ -24,7 +24,7 @@ defmodule Leaply.Auth.User do
   """
   def administration_changeset(user, attrs) do
     user
-    |> cast(attrs, [:email])
+    |> cast(attrs, [:email, :display_name])
     |> validate_email()
   end
 
