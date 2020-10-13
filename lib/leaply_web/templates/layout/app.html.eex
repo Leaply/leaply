@@ -61,8 +61,7 @@
     <div class="flex justify-between h-16">
       <div class="flex px-2 lg:px-0">
         <div class="flex-shrink-0 flex items-center">
-          <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-on-white.svg" alt="Workflow logo">
-          <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-on-white.svg" alt="Workflow logo">
+          <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-on-white.svg" alt="Workflow logo">
         </div>
         <div class="hidden lg:ml-6 lg:flex">
           <a href="#" class="inline-flex items-center px-1 pt-1 border-b-2 border-orange-500 text-sm font-medium leading-5 text-gray-900 dark:text-white focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
@@ -149,9 +148,9 @@
         </div>
       <% else %>
         <div class="hidden lg:flex items-center justify-end space-x-8 lg:flex-1 lg:w-0">
-          <%= link "Sign in", to: Routes.user_session_path(@conn, :new), class: "whitespace-no-wrap text-base leading-6 font-medium text-gray-500 hover:text-gray-900 dark-hover:text-gray-300 transition ease-in-out duration-150" %>
+          <%= link "Sign in", to: Routes.user_session_path(@conn, :new), class: "whitespace-no-wrap text-base leading-6 px-4 py-2 font-medium text-gray-500 hover:text-gray-900 dark-hover:text-gray-300 transition ease-in-out duration-150" %>
           <span class="inline-flex rounded-md shadow-sm">
-            <%= link "Sign up", to: Routes.user_registration_path(@conn, :new), class: "whitespace-no-wrap inline-flex items-center justify-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150" %>
+            <%= link "Sign up", to: Routes.user_registration_path(@conn, :new), class: "whitespace-no-wrap inline-flex items-center justify-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-orange active:bg-orange-700 transition ease-in-out duration-150" %>
           </span>
         </div>
       <% end %>

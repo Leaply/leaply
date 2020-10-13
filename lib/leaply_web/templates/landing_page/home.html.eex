@@ -140,9 +140,7 @@
         </div>
       </div>
     </div>
-    <button class="flex mx-auto mt-16 text-white bg-orange-500 border-0 py-2 px-8 focus:outline-none hover:bg-orange-600 rounded text-lg">
-      Try it now
-    </button>
+    <%= button "Try it now", to: Routes.user_registration_path(@conn, :new), method: :get, class: "flex mx-auto mt-16 text-white bg-orange-500 border-0 py-2 px-8 focus:outline-none hover:bg-orange-600 rounded text-lg" %>
   </div>
 </section>
 
@@ -164,7 +162,7 @@
       </button>
       <p class="text-xs text-gray-500 mt-3">
         If you prefer an immediate response,
-        <a class="text-orange-500">create an account</a>
+        <%= link "create an account", to: Routes.user_registration_path(@conn, :new), class: "text-orange-500" %>
         and chat to us live!
       </p>
     </div>
