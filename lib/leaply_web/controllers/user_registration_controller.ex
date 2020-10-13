@@ -7,7 +7,7 @@ defmodule LeaplyWeb.UserRegistrationController do
 
   def new(conn, _params) do
     changeset = Auth.change_user_registration(%User{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset, page_title: "Sign up")
   end
 
   def create(conn, %{"user" => user_params}) do

@@ -5,7 +5,7 @@ defmodule LeaplyWeb.UserSessionController do
   alias LeaplyWeb.UserAuth
 
   def new(conn, _params) do
-    render(conn, "new.html", error_message: nil)
+    render(conn, "new.html", page_title: "Sign in", error_message: nil)
   end
 
   def create(conn, %{"user" => user_params}) do

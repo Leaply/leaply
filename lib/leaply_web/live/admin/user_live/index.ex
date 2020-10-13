@@ -20,20 +20,21 @@ defmodule LeaplyWeb.Admin.UserLive.Index do
   end
 
   defp apply_action(socket, :edit, %{"id" => id}) do
+    user = Auth.get_user!(id)
     socket
-    |> assign(:page_title, "Edit User")
-    |> assign(:user, Auth.get_user!(id))
+    |> assign(:user, user)
+    |> assign(:page_title, "Editing #{user.email}")
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "Register New User")
+    |> assign(:page_title, "New User")
     |> assign(:user, %User{})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Users")
+    |> assign(:page_title, "Users")
     |> assign(:user, nil)
   end
 

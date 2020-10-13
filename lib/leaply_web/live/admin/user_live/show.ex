@@ -11,12 +11,13 @@ defmodule LeaplyWeb.Admin.UserLive.Show do
 
   @impl true
   def handle_params(%{"id" => id}, _, socket) do
+    user = Auth.get_user!(id)
     {:noreply,
      socket
-     |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:user, Auth.get_user!(id))}
+     |> assign(:page_title, page_title(socket.assigns.live_action, user))
+     |> assign(:user, user)}
   end
 
-  defp page_title(:show), do: "Show User"
-  defp page_title(:edit), do: "Edit User"
+  defp page_title(:show, user), do: "User #{user.email}"
+  defp page_title(:edit, user), do: "Editing #{user.email}"
 end

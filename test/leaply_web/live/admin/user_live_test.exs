@@ -82,7 +82,7 @@ defmodule LeaplyWeb.Admin.UserLiveTest do
     test "displays user", %{conn: conn, user: user} do
       {:ok, _show_live, html} = live(conn, Routes.admin_user_show_path(conn, :show, user))
 
-      assert html =~ "Show User"
+      assert html =~ "User Information"
       assert html =~ user.email
     end
 

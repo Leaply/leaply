@@ -4,7 +4,7 @@ defmodule LeaplyWeb.UserConfirmationController do
   alias Leaply.Auth
 
   def new(conn, _params) do
-    render(conn, "new.html")
+    render(conn, "new.html", page_title: "Email confirmation")
   end
 
   def create(conn, %{"user" => %{"email" => email}}) do
